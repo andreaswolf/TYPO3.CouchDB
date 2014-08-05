@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -29,7 +29,7 @@ namespace TYPO3\CouchDB;
 class DesignDocument {
 
 	/**
-	 * @var \TYPO3\FLOW3\Reflection\ReflectionService
+	 * @var \TYPO3\Flow\Reflection\ReflectionService
 	 */
 	private $reflectionService;
 
@@ -262,10 +262,10 @@ class DesignDocument {
 
 	/**
 	 *
-	 * @param \TYPO3\FLOW3\Reflection\ReflectionService $reflectionService
+	 * @param \TYPO3\Flow\Reflection\ReflectionService $reflectionService
 	 * @return void
 	 */
-	public function injectReflectionService(\TYPO3\FLOW3\Reflection\ReflectionService $reflectionService) {
+	public function injectReflectionService(\TYPO3\Flow\Reflection\ReflectionService $reflectionService) {
 		$this->reflectionService = $reflectionService;
 	}
 

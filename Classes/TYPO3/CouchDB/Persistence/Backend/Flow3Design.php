@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Persistence\Backend;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -22,7 +22,7 @@ namespace TYPO3\CouchDB\Persistence\Backend;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * A CouchDB design document to specify views
@@ -33,7 +33,7 @@ class Flow3Design extends \TYPO3\CouchDB\DesignDocument {
 	 * Design document name, should be the same as the design name of the query view
 	 * @var string
 	 */
-	protected $name = 'FLOW3';
+	protected $name = 'Flow';
 
 	/**
 	 * Constructor

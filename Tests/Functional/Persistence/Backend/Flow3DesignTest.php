@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Tests\Functional\Persistence\Backend;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -27,7 +27,7 @@ namespace TYPO3\CouchDB\Tests\Functional\Persistence\Backend;
  * Make sure to configure a test database for the Testing context in
  * Configuration/Testing/Settings.yaml.
  */
-class Flow3DesignTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
+class Flow3DesignTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * @var \TYPO3\CouchDB\Client
@@ -51,8 +51,8 @@ class Flow3DesignTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$configurationManager = $this->objectManager->get('TYPO3\FLOW3\Configuration\ConfigurationManager');
-		$backendOptions = $this->objectManager->getSettingsByPath(array('TYPO3', 'FLOW3', 'persistence', 'backendOptions'));
+		$configurationManager = $this->objectManager->get('TYPO3\Flow\Configuration\ConfigurationManager');
+		$backendOptions = $this->objectManager->getSettingsByPath(array('TYPO3', 'Flow', 'persistence', 'backendOptions'));
 
 		$this->client = new \TYPO3\CouchDB\Client($backendOptions['dataSourceName']);
 		if (isset($backendOptions['database']) && $backendOptions['database'] !== '') {
@@ -75,7 +75,7 @@ class Flow3DesignTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	public function tearDown() {
 		parent::tearDown();
 
-		$this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Session')->destroy();
+		$this->objectManager->get('TYPO3\Flow\Persistence\Generic\Session')->destroy();
 	}
 
 	/**

@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Persistence\Backend;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -22,9 +22,9 @@ namespace TYPO3\CouchDB\Persistence\Backend;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
-use TYPO3\FLOW3\Reflection\ClassSchema;
+use TYPO3\Flow\Reflection\ClassSchema;
 use TYPO3\CouchDB\Client;
 use TYPO3\CouchDB\Domain\Index\LuceneIndex;
 use TYPO3\CouchDB\ViewInterface;
@@ -33,9 +33,9 @@ use TYPO3\CouchDB\ViewInterface;
  * A CouchDB persistence backend
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBackend {
+class CouchDbBackend extends \TYPO3\Flow\Persistence\Generic\Backend\AbstractBackend {
 
 	/**
 	 * @var \TYPO3\CouchDB\Client
@@ -179,7 +179,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 
 		$classSchema = $this->reflectionService->getClassSchema($object);
 		if ($classSchema === NULL) {
-			throw new \TYPO3\FLOW3\Persistence\Exception('Could not get class schema for object', 1326384087);
+			throw new \TYPO3\Flow\Persistence\Exception('Could not get class schema for object', 1326384087);
 		}
 
 		$dirty = FALSE;
@@ -229,8 +229,8 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
 	protected function collectMetadata($object) {
-		if (isset($object->FLOW3_Persistence_Metadata)) {
-			return $object->FLOW3_Persistence_Metadata;
+		if (isset($object->Flow_Persistence_Metadata)) {
+			return $object->Flow_Persistence_Metadata;
 		}
 	}
 
@@ -244,7 +244,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
 	protected function setRevisionMetadata($object, $revision) {
-		$object->FLOW3_Persistence_Metadata = array(
+		$object->Flow_Persistence_Metadata = array(
 			'CouchDB_Revision' => $revision
 		);
 	}
@@ -290,12 +290,12 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 	protected function collectProperties($identifier, $object, array $properties, &$dirty) {
 		$propertyData = array();
 		foreach ($properties as $propertyName => $propertyMetaData) {
-			if ($propertyName === 'FLOW3_Persistence_Identifier') {
+			if ($propertyName === 'Flow_Persistence_Identifier') {
 				continue;
 			}
 
 			$this->checkPropertyValue($object, $propertyName, $propertyMetaData);
-			$propertyValue = \TYPO3\FLOW3\Reflection\ObjectAccess::getProperty($object, $propertyName, TRUE);
+			$propertyValue = \TYPO3\Flow\Reflection\ObjectAccess::getProperty($object, $propertyName, TRUE);
 
 			if ($this->persistenceSession->isDirty($object, $propertyName)) {
 				$dirty = TRUE;
@@ -401,7 +401,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 		}
 
 		if (count($referenceByIdentifier) > 0) {
-			throw new \TYPO3\FLOW3\Persistence\Exception('Wont remove entity "' . $identifier . '", still referenced from ' . implode(', ', array_keys($referenceByIdentifier)), 1316526986);
+			throw new \TYPO3\Flow\Persistence\Exception('Wont remove entity "' . $identifier . '", still referenced from ' . implode(', ', array_keys($referenceByIdentifier)), 1316526986);
 		}
 	}
 
@@ -433,7 +433,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 	 * @return void
 	 */
 	protected function emitPersistedObject($object, $objectState) {
-		if (property_exists($object, 'FLOW3_Persistence_clone') && $object->FLOW3_Persistence_clone === TRUE) {
+		if (property_exists($object, 'Flow_Persistence_clone') && $object->Flow_Persistence_clone === TRUE) {
 				// Detach any deleted entity that has been merged afterwards
 			$this->deletedEntities->detach($object);
 		}
@@ -622,11 +622,11 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 	/**
 	 * Returns the number of records matching the query.
 	 *
-	 * @param \TYPO3\FLOW3\Persistence\QueryInterface $query
+	 * @param \TYPO3\Flow\Persistence\QueryInterface $query
 	 * @return integer
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
-	public function getObjectCountByQuery(\TYPO3\FLOW3\Persistence\QueryInterface $query) {
+	public function getObjectCountByQuery(\TYPO3\Flow\Persistence\QueryInterface $query) {
 		if ($query instanceof \TYPO3\CouchDB\Persistence\LuceneQuery) {
 			$result = $this->queryIndex($query->getIndex(), array('query' => $query, 'count' => TRUE));
 			if ($result !== NULL && isset($result->total_rows) && is_int($result->total_rows)) {
@@ -671,11 +671,11 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 	/**
 	 * Returns the object data matching the $query.
 	 *
-	 * @param \TYPO3\FLOW3\Persistence\QueryInterface $query
+	 * @param \TYPO3\Flow\Persistence\QueryInterface $query
 	 * @return array
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
-	public function getObjectDataByQuery(\TYPO3\FLOW3\Persistence\QueryInterface $query) {
+	public function getObjectDataByQuery(\TYPO3\Flow\Persistence\QueryInterface $query) {
 		if ($query instanceof \TYPO3\CouchDB\Persistence\LuceneQuery) {
 			return $this->getObjectDataByIndex($query->getIndex(), array('query' => $query));
 		} else {
@@ -780,7 +780,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 		$identifiersToFetch = array();
 		$data = array();
 		foreach ($documents as $document) {
-			$objectData = \TYPO3\FLOW3\Utility\Arrays::convertObjectToArray($document);
+			$objectData = \TYPO3\Flow\Utility\Arrays::convertObjectToArray($document);
 				// CouchDB marks documents as deleted, we need to skip these documents here
 			if (isset($objectData['deleted']) && $objectData['deleted'] === TRUE) {
 				continue;
@@ -828,7 +828,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 	 * @param array &$properties
 	 * @param array &$identifiersToFetch
 	 * @param array &$knownObjects
-	 * @param \TYPO3\FLOW3\Reflection\ClassSchema $classSchema
+	 * @param \TYPO3\Flow\Reflection\ClassSchema $classSchema
 	 * @return void
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
@@ -910,7 +910,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Persistence\Generic\Backend\AbstractBa
 				if ($this->client->createDatabase($this->databaseName)) {
 					return $this->doOperation($couchDbOperation);
 				} else {
-					throw new \TYPO3\FLOW3\Persistence\Exception('Could not create database ' . $this->database, 1286901880);
+					throw new \TYPO3\Flow\Persistence\Exception('Could not create database ' . $this->database, 1286901880);
 				}
 			} else {
 				throw $clientException;

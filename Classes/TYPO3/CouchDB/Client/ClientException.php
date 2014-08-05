@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Client;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -26,7 +26,7 @@ namespace TYPO3\CouchDB\Client;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class ClientException extends \TYPO3\FLOW3\Persistence\Exception {
+class ClientException extends \TYPO3\Flow\Persistence\Exception {
 
 	/**
 	 * @var array

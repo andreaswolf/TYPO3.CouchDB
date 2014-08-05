@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Tests\Functional;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -29,7 +29,7 @@ namespace TYPO3\CouchDB\Tests\Functional;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
+class CouchDbTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * @var boolean
@@ -56,7 +56,7 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		try {
 			parent::tearDown();
 		} catch(\Exception $e) {
-			\TYPO3\FLOW3\var_dump($e, 'Exception during tearDown');
+			\TYPO3\Flow\var_dump($e, 'Exception during tearDown');
 		}
 
 		$this->tearDownPersistence();
@@ -75,7 +75,7 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
 	public function backendIsCouchDbBackend() {
-		$backend = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Backend\BackendInterface');
+		$backend = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Backend\BackendInterface');
 		$this->assertInstanceOf('TYPO3\CouchDB\Persistence\Backend\CouchDbBackend', $backend);
 	}
 
@@ -120,7 +120,7 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 		$this->tearDownPersistence();
 
-		$backend = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Backend\BackendInterface');
+		$backend = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Backend\BackendInterface');
 		$objectData = $backend->getObjectDataByIdentifier($identifier);
 
 		$this->assertEquals($identifier, $objectData['identifier']);
@@ -474,14 +474,14 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 		$object = $repository->findOneByName('Entity with single valueobject');
 
-		$metadata = $object->FLOW3_Persistence_Metadata;
+		$metadata = $object->Flow_Persistence_Metadata;
 		$revision = $metadata['CouchDB_Revision'];
 
 		$this->tearDown();
 
 		$object = $repository->findOneByName('Entity with single valueobject');
 
-		$metadata = $object->FLOW3_Persistence_Metadata;
+		$metadata = $object->Flow_Persistence_Metadata;
 		$newRevision = $metadata['CouchDB_Revision'];
 
 		$this->assertEquals($revision, $newRevision);
@@ -567,7 +567,7 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		$this->tearDown();
 
 		$source = array('__identity' => $identifier, 'name' => 'Foofoo');
-		$propertyMapper = $this->objectManager->get('TYPO3\FLOW3\Property\PropertyMapper');
+		$propertyMapper = $this->objectManager->get('TYPO3\Flow\Property\PropertyMapper');
 		$mappedEntity = $propertyMapper->convert($source, 'TYPO3\CouchDB\Tests\Functional\Fixtures\Domain\Model\TestEntity');
 
 		$repository->update($mappedEntity);
@@ -596,7 +596,7 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		$this->tearDown();
 
 		$source = array('__identity' => $identifier, 'name' => 'Foofoo');
-		$propertyMapper = $this->objectManager->get('TYPO3\FLOW3\Property\PropertyMapper');
+		$propertyMapper = $this->objectManager->get('TYPO3\Flow\Property\PropertyMapper');
 		$mappedEntity = $propertyMapper->convert($source, 'TYPO3\CouchDB\Tests\Functional\Fixtures\Domain\Model\TestEntity');
 
 		$this->assertEquals('Foofoo', $mappedEntity->getName());
@@ -624,7 +624,7 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		$this->tearDown();
 
 		$source = array('__identity' => $identity, 'name' => 'Foofoo');
-		$propertyMapper = $this->objectManager->get('TYPO3\FLOW3\Property\PropertyMapper');
+		$propertyMapper = $this->objectManager->get('TYPO3\Flow\Property\PropertyMapper');
 		$mappedEntity = $propertyMapper->convert($source, 'TYPO3\CouchDB\Tests\Functional\Fixtures\Domain\Model\TestEntity');
 
 		$repository->update($mappedEntity);
@@ -818,7 +818,7 @@ class CouchDbTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
 	protected function resetPersistenceBackend() {
-		$backend = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Backend\BackendInterface');
+		$backend = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Backend\BackendInterface');
 		$backend->resetStorage();
 	}
 }

@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Tests\Unit\Client;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -26,7 +26,7 @@ namespace TYPO3\CouchDB\Tests\Unit\Client;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class HttpConnectorTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
+class HttpConnectorTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @var \TYPO3\CouchDB\Client\HttpConnector

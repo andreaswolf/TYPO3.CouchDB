@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -22,7 +22,7 @@ namespace TYPO3\CouchDB;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * A static CouchDB view for entities by parent identifer
@@ -32,13 +32,13 @@ use TYPO3\FLOW3\Annotations as FLOW3;
 class EntityByParentIdentifierView implements \TYPO3\CouchDB\ViewInterface {
 
 	/**
-	 * Get the design name where the view is defined. This is FLOW3 as a
+	 * Get the design name where the view is defined. This is Flow as a
 	 * default for this view.
 	 *
 	 * @return string
 	 */
 	public function getDesignName() {
-		return 'FLOW3';
+		return 'Flow';
 	}
 
 	/**

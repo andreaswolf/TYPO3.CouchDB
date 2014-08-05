@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Command;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -22,29 +22,29 @@ namespace TYPO3\CouchDB\Command;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * A command controller to synchronize design documents
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class DesignCommandController extends \TYPO3\FLOW3\Cli\CommandController {
+class DesignCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Reflection\ReflectionService
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Reflection\ReflectionService
 	 */
 	protected $reflectionService;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Object\ObjectManagerInterface
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Object\ObjectManagerInterface
 	 */
 	protected $objectManager;
 
 	/**
-	 * Synchronize designs from FLOW3 declarations to CouchDB documents
+	 * Synchronize designs from Flow declarations to CouchDB documents
 	 *
 	 * @return void
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
@@ -52,7 +52,7 @@ class DesignCommandController extends \TYPO3\FLOW3\Cli\CommandController {
 	public function synchronizeCommand() {
 		$designDocumentClassNames = $this->reflectionService->getAllSubClassNamesForClass('TYPO3\CouchDB\DesignDocument');
 		foreach ($designDocumentClassNames as $objectName) {
-			if ($this->objectManager->getScope($objectName) === \TYPO3\FLOW3\Object\Configuration\Configuration::SCOPE_SINGLETON) {
+			if ($this->objectManager->getScope($objectName) === \TYPO3\Flow\Object\Configuration\Configuration::SCOPE_SINGLETON) {
 				$designDocument = $this->objectManager->get($objectName);
 				$designDocument->synchronize();
 				$this->outputLine($objectName . ' synchronized.');

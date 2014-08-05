@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Tests\Unit;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -28,7 +28,7 @@ namespace TYPO3\CouchDB\Tests\Unit;
  *
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class ClientTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
+class ClientTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @var \TYPO3\CouchDB\Client
@@ -209,7 +209,7 @@ class ClientTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 
 	/**
 	 * @test
-	 * @expectedException \TYPO3\FLOW3\Persistence\Exception
+	 * @expectedException \TYPO3\Flow\Persistence\Exception
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
 	public function getDocumentWithInvalidIdThrowsException() {

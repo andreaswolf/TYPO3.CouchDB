@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Persistence;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -24,7 +24,7 @@ namespace TYPO3\CouchDB\Persistence;
 /**
  * A marker interface for a query logger
  */
-interface QueryLoggerInterface extends \TYPO3\FLOW3\Log\LoggerInterface {
+interface QueryLoggerInterface extends \TYPO3\Flow\Log\LoggerInterface {
 
 }
 ?>

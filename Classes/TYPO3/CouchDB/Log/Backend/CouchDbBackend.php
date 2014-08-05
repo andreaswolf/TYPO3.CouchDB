@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Log\Backend;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -22,12 +22,12 @@ namespace TYPO3\CouchDB\Log\Backend;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * A CouchDB log backend
  */
-class CouchDbBackend extends \TYPO3\FLOW3\Log\Backend\AbstractBackend {
+class CouchDbBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 
 	/**
 	 * @var string
@@ -67,7 +67,7 @@ class CouchDbBackend extends \TYPO3\FLOW3\Log\Backend\AbstractBackend {
 	 * Default design document name for reading logs
 	 * @var string
 	 */
-	protected $designName = 'FLOW3_Internal';
+	protected $designName = 'Flow_Internal';
 
 	/**
 	 * Opens the CouchDB connection

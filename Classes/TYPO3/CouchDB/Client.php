@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -22,7 +22,7 @@ namespace TYPO3\CouchDB;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * A CouchDB client using an HTTP connector
@@ -47,7 +47,7 @@ class Client {
 	protected $databaseName;
 
 	/**
-	 * @FLOW3\Inject
+	 * @Flow\Inject
 	 * @var \TYPO3\CouchDB\Persistence\QueryLoggerInterface
 	 */
 	protected $queryLogger;
@@ -394,7 +394,7 @@ class Client {
 	 */
 	protected function checkDocumentId($id) {
 		if (!preg_match(self::PATTERN_DOCUMENT_ID, $id)) {
-			throw new \TYPO3\FLOW3\Persistence\Exception('Invalid document id: [' . $id . ']', 1317125883);
+			throw new \TYPO3\Flow\Persistence\Exception('Invalid document id: [' . $id . ']', 1317125883);
 		}
 	}
 
@@ -412,7 +412,7 @@ class Client {
 	 */
 	public function getDatabaseName() {
 		if ($this->databaseName === NULL) {
-			throw new \TYPO3\FLOW3\Persistence\Exception('No database name set, call setDatabaseName() or provide database in dataSourceName', 1287349160);
+			throw new \TYPO3\Flow\Persistence\Exception('No database name set, call setDatabaseName() or provide database in dataSourceName', 1287349160);
 		}
 		return $this->databaseName;
 	}

@@ -2,7 +2,7 @@
 namespace TYPO3\CouchDB\Tests\Functional;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "CouchDB".                    *
+ * This script belongs to the TYPO3 Flow package "CouchDB".               *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -29,7 +29,7 @@ namespace TYPO3\CouchDB\Tests\Functional;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class CouchDbLuceneTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
+class CouchDbLuceneTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * @var boolean
@@ -43,8 +43,8 @@ class CouchDbLuceneTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$configurationManager = $this->objectManager->get('TYPO3\FLOW3\Configuration\ConfigurationManager');
-		$backendOptions = $this->objectManager->getSettingsByPath(array('TYPO3', 'FLOW3', 'persistence', 'backendOptions'));
+		$configurationManager = $this->objectManager->get('TYPO3\Flow\Configuration\ConfigurationManager');
+		$backendOptions = $this->objectManager->getSettingsByPath(array('TYPO3', 'Flow', 'persistence', 'backendOptions'));
 
 		if (!$backendOptions['enableCouchdbLucene']) {
 			$this->markTestSkipped('CouchDB Lucene not enabled');
@@ -81,10 +81,10 @@ class CouchDbLuceneTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		$entity2->setName('BarXYZBar');
 		$repository->add($entity2);
 
-		$persistenceManager = $this->objectManager->get('TYPO3\FLOW3\Persistence\PersistenceManagerInterface');
+		$persistenceManager = $this->objectManager->get('TYPO3\Flow\Persistence\PersistenceManagerInterface');
 		$persistenceManager->persistAll();
 
-		$persistenceSession = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Session');
+		$persistenceSession = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Session');
 		$persistenceSession->destroy();
 
 		$entities = $repository->findByNameLike('foo*');
@@ -117,10 +117,10 @@ class CouchDbLuceneTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		$entity->setRelatedValueObject($valueObject);
 		$repository->add($entity);
 
-		$persistenceManager = $this->objectManager->get('TYPO3\FLOW3\Persistence\PersistenceManagerInterface');
+		$persistenceManager = $this->objectManager->get('TYPO3\Flow\Persistence\PersistenceManagerInterface');
 		$persistenceManager->persistAll();
 
-		$persistenceSession = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Session');
+		$persistenceSession = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Session');
 		$persistenceSession->destroy();
 
 		$entities = $repository->findByColor('green');
@@ -142,10 +142,10 @@ class CouchDbLuceneTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		$entity->setRelatedValueObject($valueObject);
 		$repository->add($entity);
 
-		$persistenceManager = $this->objectManager->get('TYPO3\FLOW3\Persistence\PersistenceManagerInterface');
+		$persistenceManager = $this->objectManager->get('TYPO3\Flow\Persistence\PersistenceManagerInterface');
 		$persistenceManager->persistAll();
 
-		$persistenceSession = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Session');
+		$persistenceSession = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Session');
 		$persistenceSession->destroy();
 
 		$entities = $repository->findByNameOrColor('Foo', 'green');
@@ -174,10 +174,10 @@ class CouchDbLuceneTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		$entity->setRelatedValueObject(new Fixtures\Domain\Model\TestValueObject('green'));
 		$repository->add($entity);
 
-		$persistenceManager = $this->objectManager->get('TYPO3\FLOW3\Persistence\PersistenceManagerInterface');
+		$persistenceManager = $this->objectManager->get('TYPO3\Flow\Persistence\PersistenceManagerInterface');
 		$persistenceManager->persistAll();
 
-		$persistenceSession = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Session');
+		$persistenceSession = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Session');
 		$persistenceSession->destroy();
 
 		$entities = $repository->findByColor('green')->toArray();
@@ -191,7 +191,7 @@ class CouchDbLuceneTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 */
 	protected function resetPersistenceBackend() {
-		$backend = $this->objectManager->get('TYPO3\FLOW3\Persistence\Generic\Backend\BackendInterface');
+		$backend = $this->objectManager->get('TYPO3\Flow\Persistence\Generic\Backend\BackendInterface');
 		$backend->resetStorage();
 	}
 
